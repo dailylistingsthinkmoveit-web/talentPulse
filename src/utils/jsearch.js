@@ -69,7 +69,7 @@ function mapJob(job) {
       [job.job_city, job.job_state, job.job_country]
         .filter(Boolean)
         .join(", ") || "Not specified",
-    jobType: formatJobType(job.job_employment_type) || "Not specified",
+    jobType: formatJobType(job.job_employment_types?.[0] || job.job_employment_type) || "Not specified",
     workType,
     salary,
     experienceLevel,
@@ -172,8 +172,12 @@ export async function searchJobs(formData) {
   // values are guaranteed to be in our normalised format.
 
   // Job Type: e.g. ["Full-Time", "Contract"]
+  // Only filter out jobs with a KNOWN type that doesn't match.
+  // Jobs with "Not specified" type pass through — JSearch often omits this field.
   if (jobTypes.length > 0) {
-    jobs = jobs.filter((job) => jobTypes.includes(job.jobType));
+    jobs = jobs.filter(
+      (job) => job.jobType === "Not specified" || jobTypes.includes(job.jobType)
+    );
   }
 
   // Work Type: e.g. ["Remote", "Hybrid", "On-Site"]
