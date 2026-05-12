@@ -76,7 +76,7 @@ export default function ResultsTable({ jobs, searchParams }) {
         },
       });
       setToast({
-        message: "✓ Results sent to sidhanth.ui@gmail.com",
+        message: "✓ Results sent to your email",
         type: "success",
       });
     } catch (err) {
@@ -133,7 +133,7 @@ export default function ResultsTable({ jobs, searchParams }) {
               className="btn btn-email"
               onClick={handleSendEmail}
               disabled={isSending}
-              title="Send results to sidhanth.ui@gmail.com"
+              title="Send results to your email"
             >
               {isSending ? (
                 <span className="btn-loading">

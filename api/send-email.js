@@ -59,7 +59,7 @@ module.exports = async function handler(req, res) {
     // ── Build Excel in memory ───────────────────────────────────────────────
     const titleRow  = ["TalentPulse Job Search Results"];
     const metaRow   = [
-      `Search: ${jobPosition}  |  Location: ${location}  |  Date: ${today}  |  Results: ${jobs.length}`,
+      `Position: ${jobPosition}  |  Location: ${location}  |  Date: ${today}  |  Results: ${jobs.length}`,
     ];
     const blankRow  = [""];
     const headerRow = COLUMNS.map((c) => c.label);
@@ -159,7 +159,7 @@ module.exports = async function handler(req, res) {
 
     await resend.emails.send({
       from: "TalentPulse <onboarding@resend.dev>",
-      to: "sidhanth.ui@gmail.com",
+      to: process.env.RECIPIENT_EMAIL,
       subject: `Job Search Results — ${jobPosition} in ${location}`,
       html: htmlBody,
       attachments: [

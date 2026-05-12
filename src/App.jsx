@@ -45,8 +45,7 @@ export default function App() {
         <div className="header-inner">
           <div className="logo-mark" aria-hidden="true">TP</div>
           <div className="logo-text">
-            <span className="logo-name">TalentPulse</span>
-            <span className="logo-tagline">Real-time job search, powered by AI</span>
+            <span className="logo-name">TalentPulse</span> 
           </div>
         </div>
       </header>
@@ -96,7 +95,7 @@ export default function App() {
       <footer className="app-footer">
         <p>
           TalentPulse &copy; {new Date().getFullYear()} &mdash; Powered by{" "}
-          <b>Manideep Reddy</b>
+          <b>Think & Move IT Solutions. All rights reserved.</b>
         </p>
       </footer>
     </div>

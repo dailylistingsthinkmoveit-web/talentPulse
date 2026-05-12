@@ -180,7 +180,7 @@ app.post("/api/send-email", async (req, res) => {
     ];
 
     const titleRow   = ["TalentPulse Job Search Results"];
-    const metaRow    = [`Search: ${jobPosition}  |  Location: ${location}  |  Date: ${today}  |  Results: ${jobs.length}`];
+    const metaRow    = [`Position: ${jobPosition}  |  Location: ${location}  |  Date: ${today}  |  Results: ${jobs.length}`];
     const blankRow   = [""];
     const headerRow  = COLUMNS.map((c) => c.label);
     const dataRows   = jobs.map((job) => COLUMNS.map((c) => job[c.key] || ""));
@@ -280,7 +280,7 @@ app.post("/api/send-email", async (req, res) => {
 
     await resend.emails.send({
       from: "TalentPulse <onboarding@resend.dev>",
-      to: "sidhanth.ui@gmail.com",
+      to: process.env.RECIPIENT_EMAIL,
       subject: `Job Search Results — ${jobPosition} in ${location}`,
       html: htmlBody,
       attachments: [
