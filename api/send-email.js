@@ -1,5 +1,5 @@
 /**
- * TalentPulse — Vercel Serverless Function
+ * ThinkmoveIT — Vercel Serverless Function
  * POST /api/send-email
  * Builds an Excel attachment from job results and sends it via Resend.
  */
@@ -57,7 +57,7 @@ module.exports = async function handler(req, res) {
     const todayShort = new Date().toISOString().split("T")[0];
 
     // ── Build Excel in memory ───────────────────────────────────────────────
-    const titleRow  = ["TalentPulse Job Search Results"];
+    const titleRow  = ["ThinkmoveIT Job Search Results"];
     const metaRow   = [
       `Position: ${jobPosition}  |  Location: ${location}  |  Date: ${today}  |  Results: ${jobs.length}`,
     ];
@@ -115,7 +115,7 @@ module.exports = async function handler(req, res) {
     xlsx.utils.book_append_sheet(wb, ws, "Jobs");
 
     const safePosition = jobPosition.replace(/[^a-zA-Z0-9]/g, "_");
-    const filename     = `TalentPulse_${safePosition}_${todayShort}.xlsx`;
+    const filename     = `ThinkmoveIT_${safePosition}_${todayShort}.xlsx`;
     const base64Excel  = xlsx.write(wb, { type: "base64", bookType: "xlsx" });
 
     // ── Send via Resend ─────────────────────────────────────────────────────
@@ -124,7 +124,7 @@ module.exports = async function handler(req, res) {
     const htmlBody = `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 32px 24px; background: #F8F9FC;">
   <div style="background: #1B2A4A; border-radius: 12px; padding: 24px; margin-bottom: 24px; text-align: center;">
-    <h1 style="color: white; font-size: 24px; margin: 0;">TalentPulse</h1>
+    <h1 style="color: white; font-size: 24px; margin: 0;">ThinkmoveIT</h1>
     <p style="color: #93C5FD; margin: 8px 0 0; font-size: 14px;">Real-time job search results</p>
   </div>
   <div style="background: white; border-radius: 12px; padding: 24px; margin-bottom: 16px;">
@@ -153,12 +153,12 @@ module.exports = async function handler(req, res) {
     </table>
   </div>
   <p style="color: #9CA3AF; font-size: 12px; text-align: center; margin: 0;">
-    Sent via TalentPulse · Real-time job search platform
+    Sent via ThinkmoveIT · Real-time job search platform
   </p>
 </div>`;
 
     await resend.emails.send({
-      from: "TalentPulse <onboarding@resend.dev>",
+      from: "ThinkmoveIT <onboarding@resend.dev>",
       to: process.env.RECIPIENT_EMAIL,
       subject: `Job Search Results — ${jobPosition} in ${location}`,
       html: htmlBody,

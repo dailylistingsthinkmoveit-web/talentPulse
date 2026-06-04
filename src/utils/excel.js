@@ -1,5 +1,5 @@
 /**
- * TalentPulse — Excel Export Utility
+ * ThinkmoveIT — Excel Export Utility
  * Uses SheetJS (xlsx) to generate a formatted .xlsx file from job results.
  */
 
@@ -39,7 +39,7 @@ export function downloadExcel(jobs, jobPosition, province, country) {
   const locationStr = [province, country].filter(Boolean).join(", ");
 
   // Row 1 — Title
-  const titleRow = ["TalentPulse Job Search Results"];
+  const titleRow = ["ThinkmoveIT Job Search Results"];
 
   // Row 2 — Search metadata
   const metaRow = [
@@ -160,7 +160,7 @@ export function downloadExcel(jobs, jobPosition, province, country) {
   // ── Generate filename ─────────────────────────────────────────────────────
   const dateStr = new Date().toISOString().split("T")[0]; // e.g. 2026-05-07
   const safePosition = jobPosition.replace(/[^a-zA-Z0-9]/g, "_");
-  const filename = `TalentPulse_${safePosition}_${dateStr}.xlsx`;
+  const filename = `ThinkmoveIT_${safePosition}_${dateStr}.xlsx`;
 
   // ── Trigger download ──────────────────────────────────────────────────────
   XLSX.writeFile(wb, filename);

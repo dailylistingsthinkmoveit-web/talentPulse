@@ -166,7 +166,7 @@ TalentPulse/
 
 ## Email Feature Setup
 
-The Send Email button sends job results directly to sidhanth.ui@gmail.com as a formatted Excel attachment using [Resend](https://resend.com).
+The Send Email button sends job results directly to company email as a formatted Excel attachment using [Resend](https://resend.com).
 
 1. Create a free account at https://resend.com
 2. Go to **API Keys** in the dashboard and create a new key
