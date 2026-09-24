@@ -15,7 +15,6 @@ const RESULT_OPTIONS = [10, 20, 30, 50];
 
 const INITIAL_STATE = {
   jobPosition: "",
-  country: "",
   province: "",
   datePosted: "Last 7 Days",
   jobTypes: ["Full-Time"],
@@ -33,9 +32,6 @@ export default function JobForm({ onSearch, isLoading }) {
     const newErrors = {};
     if (!form.jobPosition.trim()) {
       newErrors.jobPosition = "Please enter a job position.";
-    }
-    if (!form.country.trim()) {
-      newErrors.country = "Please enter a country.";
     }
     return newErrors;
   }
@@ -104,27 +100,7 @@ export default function JobForm({ onSearch, isLoading }) {
         )}
       </div>
 
-      {/* Country */}
-      <div className={`form-group ${errors.country ? "has-error" : ""}`}>
-        <label htmlFor="country">
-          Country <span className="required">*</span>
-        </label>
-        <input
-          id="country"
-          name="country"
-          type="text"
-          value={form.country}
-          onChange={handleTextChange}
-          placeholder="e.g. Canada"
-          disabled={isLoading}
-          autoComplete="off"
-        />
-        {errors.country && (
-          <span className="field-error">{errors.country}</span>
-        )}
-      </div>
-
-      {/* Province / State */}
+      {/* Province / State / City — Canada only */}
       <div className="form-group">
         <label htmlFor="province">Province / State / City</label>
         <input
