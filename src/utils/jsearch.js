@@ -110,7 +110,6 @@ function formatJobType(raw) {
 export async function searchJobs(formData) {
   const {
     jobPosition,
-    country,
     province,
     datePosted,
     jobTypes = [],
@@ -119,9 +118,9 @@ export async function searchJobs(formData) {
     numResults,
   } = formData;
 
-  // Build the location string for the query
-  const locationParts = [province, country].filter(Boolean);
-  const location = locationParts.join(" ");
+  // Location text for the query (province / city). Country is fixed to Canada
+  // on the backend, so it is not part of the query text.
+  const location = (province || "").trim();
   const query = jobPosition.trim();
 
   const numPages = NUM_PAGES_MAP[Number(numResults)] || 2;

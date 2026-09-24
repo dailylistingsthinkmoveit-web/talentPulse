@@ -102,6 +102,9 @@ module.exports = async function handler(req, res) {
       date_posted: datePostedMapped,
     });
 
+    // ── Canada-only: JSearch defaults to country=us, so we force ca ────────
+    params.append("country", "ca");
+
     if (remoteOnly) {
       params.append("remote_jobs_only", "true");
     }
